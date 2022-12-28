@@ -1,0 +1,114 @@
+# JMH version: 1.35
+# VM version: JDK 19-internal, OpenJDK 64-Bit Server VM, 19-internal-adhoc.matteo.jdk19u
+# VM invoker: /home/matteo/dev/jdk-sources/jva/jdk19u/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-modules=jdk.incubator.vector -Dx=128 -Dy=128 -Dz=24 -Dnp=32768
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 10 iterations, single-shot each
+# Measurement: 10 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.xorExtended
+
+# Run progress: 0.00% complete, ETA 00:00:00
+# Fork: 1 of 2
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 12.111 s/op
+# Warmup Iteration   2: 11.661 s/op
+# Warmup Iteration   3: 6.462 s/op
+# Warmup Iteration   4: 6.233 s/op
+# Warmup Iteration   5: 6.234 s/op
+# Warmup Iteration   6: 6.228 s/op
+# Warmup Iteration   7: 6.062 s/op
+# Warmup Iteration   8: 6.059 s/op
+# Warmup Iteration   9: 6.072 s/op
+# Warmup Iteration  10: 6.070 s/op
+Iteration   1: 6.057 s/op
+Iteration   2: 6.051 s/op
+Iteration   3: 6.051 s/op
+Iteration   4: 6.051 s/op
+Iteration   5: 6.045 s/op
+Iteration   6: 6.051 s/op
+Iteration   7: 6.063 s/op
+Iteration   8: 6.072 s/op
+Iteration   9: 6.035 s/op
+Iteration  10: 6.053 s/op
+
+# Run progress: 50.00% complete, ETA 00:02:13
+# Fork: 2 of 2
+WARNING: Using incubator modules: jdk.incubator.vector
+# Warmup Iteration   1: 9.827 s/op
+# Warmup Iteration   2: 6.096 s/op
+# Warmup Iteration   3: 5.911 s/op
+# Warmup Iteration   4: 5.888 s/op
+# Warmup Iteration   5: 5.902 s/op
+# Warmup Iteration   6: 5.903 s/op
+# Warmup Iteration   7: 5.911 s/op
+# Warmup Iteration   8: 5.913 s/op
+# Warmup Iteration   9: 5.917 s/op
+# Warmup Iteration  10: 5.913 s/op
+Iteration   1: 5.921 s/op
+Iteration   2: 5.918 s/op
+Iteration   3: 5.922 s/op
+Iteration   4: 5.916 s/op
+Iteration   5: 5.918 s/op
+Iteration   6: 5.910 s/op
+Iteration   7: 5.916 s/op
+Iteration   8: 5.930 s/op
+Iteration   9: 5.934 s/op
+Iteration  10: 5.933 s/op
+
+
+Result "inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.xorExtended":
+  N = 20
+  mean =      5.987 ±(99.9%) 0.059 s/op
+
+  Histogram, s/op:
+    [5.900, 5.913) = 1 
+    [5.913, 5.925) = 6 
+    [5.925, 5.938) = 3 
+    [5.938, 5.950) = 0 
+    [5.950, 5.963) = 0 
+    [5.963, 5.975) = 0 
+    [5.975, 5.988) = 0 
+    [5.988, 6.000) = 0 
+    [6.000, 6.013) = 0 
+    [6.013, 6.025) = 0 
+    [6.025, 6.038) = 1 
+    [6.038, 6.050) = 1 
+    [6.050, 6.063) = 6 
+    [6.063, 6.075) = 2 
+    [6.075, 6.088) = 0 
+    [6.088, 6.100) = 0 
+
+  Percentiles, s/op:
+      p(0.0000) =      5.910 s/op
+     p(50.0000) =      5.985 s/op
+     p(90.0000) =      6.062 s/op
+     p(95.0000) =      6.072 s/op
+     p(99.0000) =      6.072 s/op
+     p(99.9000) =      6.072 s/op
+     p(99.9900) =      6.072 s/op
+     p(99.9990) =      6.072 s/op
+     p(99.9999) =      6.072 s/op
+    p(100.0000) =      6.072 s/op
+
+
+# Run complete. Total time: 00:04:16
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                   Mode  Cnt  Score   Error  Units
+ParticlefilterPatternBenchmark.xorExtended    ss   20  5.987 ± 0.059   s/op
+
+Benchmark result is saved to paper/jdk19/matteo/pattern/performance/2022-08-07_02:44:55/particlefilter/ParticlefilterPatternBenchmark.xorExtended.csv
