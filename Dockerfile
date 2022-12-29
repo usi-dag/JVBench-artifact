@@ -86,3 +86,4 @@ ARG shared_volume
 RUN mkdir -p /artifact/$shared_volume
 
 COPY config ./
+COPY utils ./

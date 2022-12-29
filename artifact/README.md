@@ -94,7 +94,7 @@ We provide two options for running measurements:
         $ ./run.sh evaluation short
         ```
 
-    2. After approximately 1.5 hours, the generated figures will be saved in the `output/short/figures` folder in the host machine. The raw data will be saved into the `output/short/data` folder, instead.
+    2. After approximately 1.5 hours, the generated figures will be saved in the `output/short/figures` folder in the host machine. The raw data will be saved into the `output/short/data` folder, instead. The figures will be generated only after the execution of all the benchmarks.
 
 - `full`: Runs all `JVBench` workloads and patterns, setting 10 run with 10 steady-state iterations (i.e., 10 measurements). We expect that executing this setting will take around 24 hours.
 
@@ -104,7 +104,9 @@ We provide two options for running measurements:
         $ ./run.sh evaluation full
         ```
 
-    2. After the measurements are completed, the generated figures will be saved in the `output/full/figures` folder in the host machine. The raw data will be saved into the `output/full/data` folder, instead.
+    2. After the measurements are completed, the generated figures will be saved in the `output/full/figures` folder in the host machine. The raw data will be saved into the `output/full/data` folder, instead. The figures will be generated only after the execution of all the benchmarks.
+
+*Note*: For more information about the raw output data, please see the [Directory Hierarchy](#directory-hierarchy) section below.
 
 # Overview of Claims
 
@@ -115,7 +117,7 @@ The `precollected` command generates all the subfigures shown in the paper for m
 
 Following the same structure of our paper, the `evaluation` command generates a single subfigure for each figure. This subfigure can be compared with one of the subfigures shown in the paper, depending on the machine on which the subfigure has been generated. For instance, if the subfigure has been generated on `MAVX2`, the subfigure can be compared with the subfigure `MAVX2` in the paper. To generate all the subfigures, the reviewer needs to execute the `evaluation` command on three different machines, one for each type. These figures are saved in folder `output/<mode>/figures` where `<mode>` is either `short` or `full`.
 
-With the goal of easing the evaluation of the artifact by the reviewers, we ported `JVBench` to a containerized environment. Nonetheless, the use of containerization may significantly impact our measurements, particularly on those based on execution time. Moreover, different host machines with different hardware capabilities may yield different execution times. 
+With the goal of easing the evaluation of the artifact by the reviewers, we ported `JVBench` to a containerized environment. Nonetheless, the use of containerization may significantly impact our measurements, particularly on those based on execution time. Moreover, different host machines with different hardware capabilities may yield different execution times. We note that the performance measurements used to generate the figures in the paper have been collected in an isolated environment with minimal perturbation where (almost) no other process was being executed.
 Newly collected data may lead to the generation of figures with different numbers w.r.t. those shown in the paper. However, we expect the data trends and the figures generated with newly collected data to be similar to the ones shown in the paper, as detailed below.
 
 ## Evaluation of the Java Vector API (Figure 3)
@@ -278,6 +280,7 @@ The directory hierarchy in our Docker image is as follows:
 /artifact                   <-- working directory
 | README.md                 // a copy of this README file
 | config                    // environment variables used by the other commands
+| utils                     // bash utils used by the other commands
 | evaluation.sh             // run benchmarks by calling the python scripts in `benchmark_runner/` and generate the figures by calling the scripts in `postprocessing/`
 | generate-figures.sh       // call the python scripts in `postprocessing/` to generate the figures
 | precollected.sh           // generate figures using precollected data
@@ -290,7 +293,18 @@ The directory hierarchy in our Docker image is as follows:
 > benchmark_runner/         // helper python scripts used to execute JVBench workloads
 > precollected_data/        // precollected data used to generate the figures of the paper
 > postprocessing/           // python scripts to generate the figures using matplotlib
-> ↗shared_volume            // link to output folder on the host machine
+V ↗output                   // link to output folder on the host machine
+  V short                      // folder created by executing the `./run.sh evaluation short` command
+    > figures                     // contains the figures generated using the data stored in its sibling `data` folder
+    V data/jdk19/dockerimg        // contains the newly collected raw data
+      V benchmark/performance/<datetime>/<benchmark>        // contains the performance measurements of benchmark <benchmark> for the execution started at <datetime>
+        | <javaBenchmarkClassName>.txt                                 // standard output of the execution of benchmark <benchmark>
+        | <javaBenchmarkClassName>.csv                                 // performance masurements extracted from the sibling `.txt` file
+      V pattern/performance/<datetime>/<benchmark>          // contains the performance measurements of benchmark <benchmark> for the execution started at <datetime>
+        | <javaBenchmarkClassName>.<pattern>.txt                       // standard output of the execution of benchmark <benchmark> exercising pattern <pattern>
+        | <javaBenchmarkClassName>.<pattern>.csv                       // performance masurements extracted from the sibling `.txt` file
+  > full                       // folder created by executing the `./run.sh evaluation full` command, this folder has the same structure as its sibling folder `short`
+  > figures-paper              // folder created by executing the `./run.sh precollected` command, contains the figures generated using precollected data
 ```
 
 *Note*: The `↗` symbol before `output` denotes that such folder is mapped to the `output/` folder in the current path of the host machine. Therefore, you can open files generated in `↗output` in the host machine, from outside the docker container.

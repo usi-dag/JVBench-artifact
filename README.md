@@ -23,6 +23,7 @@ Then, you can find a `.tgz` archive with the generated docker image in the `out/
 ## Repository Overview
 
 - `config`: contains the environment variables used by the other commands
+- `utils`: bash utils used by the other commands
 - `Dockerfile`: the dockerfile used to build the image
 - `build.sh`: script used to build the docker image
 - `run.sh`: forwards the provided command to a docker container of the generated image (copied in the generated archive)

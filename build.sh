@@ -44,7 +44,7 @@ echo "Packing $TOOL_NAME... Please wait..."
 echo "Building $TOOL_NAME"
 docker build --pull --rm -f "Dockerfile" -t $DOCKER_IMAGE_NAME --build-arg shared_volume=$SHARED_VOLUME "."
 if [ $? -ne 0 ]; then
-    echo -e "\nError: cannot build $TOOL_NAME\nExit"
+    echo -e "\n\nError: cannot build $TOOL_NAME\nExit\n\n"
     exit 13
 fi
 
@@ -66,7 +66,7 @@ npm install
 node md2pdfREADME.js
 cd ..
 mv README.pdf $OUT_BUILD_DIR/
-cp artifact/README.md run.sh config $OUT_BUILD_DIR/
+cp artifact/README.md run.sh config utils $OUT_BUILD_DIR/
 
 echo "Exporting archive to to '$OUT_RELEASE_DIR' directory."
 mkdir -p $OUT_RELEASE_DIR/

@@ -1,6 +1,21 @@
 #!/bin/bash
 
-INSTALLATION_ERROR_MESSAGE="ERROR : cannot verify installation"
+. utils
+
+echo
+echo "This command will verify the installation of the artifact by running other scripts and checking the exit codes."
+echo "Approximate running time: 5 minutes"
+yes_or_no "Do you wish to continue?"
+if [ $? -ne 0 ]; then
+    echo 
+    echo "Aborted"
+    echo
+    exit 4
+fi
+echo
+
+
+INSTALLATION_ERROR_MESSAGE="\n\n==============================================\n      ERROR : cannot verify installation      \n==============================================\n\n"
 
 echo "Verifying JDKs installation..."
 $JVBENCH_JAVA_HOME/bin/java -version
@@ -44,4 +59,10 @@ if [ $? -ne 0 ]; then
 fi
 cd ..
 
-echo "The artifact is correctly installed"
+echo
+echo
+echo "============================================="
+echo "     The artifact is correctly installed     "
+echo "============================================="
+echo
+echo
