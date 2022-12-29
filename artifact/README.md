@@ -65,9 +65,11 @@ The CPU flags will be printed on the standard output after the `flags` attribute
 
 - The main script to reproduce the evaluation of our paper is `run.sh`, which receives one of the following arguments specifying the run mode:
 
-- `precollected`: Generates the figures shown in the paper using pre-collected data.
+    - `precollected`: Generates the figures shown in the paper using pre-collected data.
 
-- `evaluation`: Runs JVBench in the container and then generates the figures from the collected data.
+    - `evaluation`: Runs JVBench in the container and then generates the figures from the collected data.
+
+    - `clean`: Cleans the environment by deleting the generated figures and the newly collected data.
 
 ### Generating figures with pre-collected data
 
@@ -107,6 +109,16 @@ We provide two options for running measurements:
     2. After the measurements are completed, the generated figures will be saved in the `output/full/figures` folder in the host machine. The raw data will be saved into the `output/full/data` folder, instead. The figures will be generated only after the execution of all the benchmarks.
 
 *Note*: For more information about the raw output data, please see the [Directory Hierarchy](#directory-hierarchy) section below.
+
+### Cleaning the Environment
+
+To delete the generated figures and the newly collected data, follow the instructions below:
+
+1. Execute `run.sh` specifying `clean` as argument.
+
+    ```bash
+    $ ./run.sh clean
+    ```
 
 # Overview of Claims
 
