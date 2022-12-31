@@ -21,6 +21,8 @@ precollected_output_dir=$(pwd)/$SHARED_VOLUME/figures-paper
 mkdir -p $precollected_output_dir
 ./generate-figures.sh -pprx precollected -i $(pwd)/precollected_data -o $precollected_output_dir
 
+rm -rf $precollected_output_dir/precollected_xor_19_MAVX.pdf $precollected_output_dir/precollected_xor_19_MAVX2.pdf
+
 echo
 echo
 echo "============================================="

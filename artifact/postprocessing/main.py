@@ -1,10 +1,13 @@
 import os
 import cli
 import pathlib
+import warnings
 import data_loader
 import numpy as np
 import pandas as pd
 from utils import overhead, plot
+
+warnings.filterwarnings('ignore')
 
 rename_configs_map = [
     # speedup

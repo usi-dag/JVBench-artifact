@@ -1,2 +1,0 @@
-"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
-"inf.usi.dag.particlefilter.ParticlefilterPatternBenchmark.xorExtended","ss",1,50,7.324239,0.020700,"s/op"
