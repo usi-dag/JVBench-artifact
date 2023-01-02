@@ -50,7 +50,7 @@ The CPU flags will be printed on the standard output after the `flags` attribute
 
 ## Installing the Artifact
 
-1. Extract the artifact `tgz` available at the following URL: [https://doi.org/10.5281/zenodo.7489684](https://doi.org/10.5281/zenodo.7489684). It includes the ready-to-use `JVBench` evaluation Docker image, a script to run the artifact, and a copy of this `README` file.
+1. Extract the artifact `tgz` available at the following URL: [https://doi.org/10.5281/zenodo.7489683](https://doi.org/10.5281/zenodo.7489683). It includes the ready-to-use `JVBench` evaluation Docker image, a script to run the artifact, and a copy of this `README` file.
 
 2. Verify the installation by executing the `run.sh` script specifying `verify` as argument.
 
@@ -282,7 +282,7 @@ In this section, we report additional notes that are not needed for the "regular
 
    We do not define the `JAVA_HOME` environment variable, which must be set when needed.
 
-- Our image includes [Apache Maven](https://maven.apache.org/) 3.8.6 at directory `/artifact/apache-maven-3.8.6`. We added directory `/artifact/apache-maven-3.8.6/bin` to the `PATH` environment variable.
+- Our image includes [Apache Maven](https://maven.apache.org/) 3.8.7 at directory `/artifact/apache-maven-3.8.7`. We added directory `/artifact/apache-maven-3.8.7/bin` to the `PATH` environment variable.
 
 ## Directory Hierarchy
 
@@ -299,7 +299,7 @@ The directory hierarchy in our Docker image is as follows:
 | verify.sh                 // verify the installation by running other scripts and checking the exit codes
 | JVBench.jar               // regular JVBench build
 | JVBench-xor.jar           // custom JVBench build that uses the VectorMask.xor(..) public method (Section 5.4)
-> apache-maven-3.8.6/       // apache maven installation
+> apache-maven-3.8.7/       // apache maven installation
 > jdk19/                    // regular OpenJDK 19 build
 > jdk19-xor/                // custom OpenJDK 19 build that that defines the VectorMask.xor(..) method as public (Section 5.4)
 > benchmark_runner/         // helper python scripts used to execute JVBench workloads

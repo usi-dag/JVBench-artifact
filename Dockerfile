@@ -17,11 +17,11 @@ RUN apt-get -yq update && \
                        # python (runner and figures)
                        python3.9 python3.9-distutils && \
     # required to build JVBench
-    wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz && \
-    tar -xzvf apache-maven-3.8.6-bin.tar.gz && \
-    rm -rf apache-maven-3.8.6-bin.tar.gz
+    wget https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz && \
+    tar -xzvf apache-maven-3.8.7-bin.tar.gz && \
+    rm -rf apache-maven-3.8.7-bin.tar.gz
 
-ENV PATH $PATH:/artifact/apache-maven-3.8.6/bin
+ENV PATH $PATH:/artifact/apache-maven-3.8.7/bin
 
 # python dependencies
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
